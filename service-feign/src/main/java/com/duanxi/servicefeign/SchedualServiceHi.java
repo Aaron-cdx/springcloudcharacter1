@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 服务的生成者在注册中心中注册的名字
+ *
+ * 当使用断路器的时候，需要改造service，此时需要添加fallback
  */
-@FeignClient(value = "service-hi")
+@FeignClient(value = "service-hi",fallback = SchedualServiceHistrix.class)
 public interface SchedualServiceHi {
 
     @RequestMapping(value = "/hi",method = RequestMethod.GET)
